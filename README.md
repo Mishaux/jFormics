@@ -8,6 +8,7 @@ I'd love to have more bug sprite images available, but making them is not my str
 An elaboration on the themes of, and indebted to, these excellent works:
 
 Original Screen Bug http://screen-bug.googlecode.com/git/index.html
+
 Upgraded Screen Bug https://github.com/Auz/Bug
 
 
@@ -103,6 +104,7 @@ Credits
 -------
 
 Upgraded Screen Bug https://github.com/Auz/Bug
+
 Original Screen Bug http://screen-bug.googlecode.com/git/index.html
 
 Copyright (c) 2013 Mike Michaud
