@@ -73,8 +73,8 @@ Mouse Interaction Modes
 
 Entrance Modes
 -----------------------
-* fly in: The bug will fly in from off screen and land.
-* walk in: The Bug will walk in from off screen, may take a few extra seconds if it dallies off screen.
+* fly in: The bug will fly in from a random location off screen and land at a random location.
+* walk in: The Bug will walk in from a random location off screen, may take a few extra seconds if it dallies off screen.
 * pop in: The Bug will pop in to being in place at a random location.
 
 
