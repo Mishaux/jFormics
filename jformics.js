@@ -60,7 +60,7 @@ var BugDispatch = {
   options: {
     minDelay: 500, // Min delay before making first bug on startup
     maxDelay: 10000, // Max delay before making last bug on startup
-    minBugs: 1, // Min starting bug count
+    minBugs: 15, // Min starting bug count
     maxBugs: 20, // Max starting bug count. Also limits multiply mode.
     minSpeed: 1, // Min bug walking speed
     maxSpeed: 3, // Max bug walking speed
@@ -76,13 +76,13 @@ var BugDispatch = {
     monitorMouseMovement: false, //This is buggy still
     eventDistanceToBug: 40, // This is buggy still
     minTimeBetweenMultipy: 1000, // Limits frequency of multiply effect
-    entrance: 'fly in', //can be 'fly in', 'walk in', 'pop in'
+    entrance: ['walk in', 'fly in'], //can be 'fly in', 'walk in', 'pop in', or randomly chosen from an array: ['fly in', 'walk in']
     respawn: true, // Replace bugs which have died or flown away
     minRespawnDelay: 4000, // Min time to wait before replacing departed bugs
     removeDead: true, // Runs dead bug removal frames after delay
     removeDeadFrames: 5, // Number of dead bug removal frames
     removeDeadDelay: 3000, // Delay after bug dies before removal frames are run and bug is destroyed
-    mouseOver: 'random' // can be 'fly', 'flyoff', 'fall, 'squish', multiply', or 'random'
+    mouseOver: ['fly', 'flyoff', 'fall', 'squish', 'multiply'] // can be 'fly', 'flyoff', 'fall', 'squish', multiply', 'pop out', or randomly chosen from an array: ['fly', 'fall']
   },
 
   initialize: function (options) {
@@ -92,8 +92,6 @@ var BugDispatch = {
     if(this.options.minBugs > this.options.maxBugs) {
       this.options.minBugs = this.options.maxBugs;
     }
-
-    this.modes = ['fall', 'multiply', 'fly', 'flyoff', 'squish'];
 
     // can we transform?
     this.transform = null;
@@ -164,10 +162,11 @@ var BugDispatch = {
       var that = this
       var delay = this.random(this.options.minDelay, this.options.maxDelay, true),
         thebug = this.bugs[i];
+
       // bring the bug onto the page:
       setTimeout((function (thebug) {
         return function () {
-          thebug.makeEntrance(that.options.entrance)
+          thebug.makeEntrance(that.pick_entrance_mode())
         };
       }(thebug)), delay);
     }
@@ -179,6 +178,15 @@ var BugDispatch = {
       };
     }
 
+  },
+
+  pick_entrance_mode: function () {
+    //pick entrance mode
+    if (this.options.entrance instanceof Array) {
+      return this.options.entrance[(this.random(0, (this.options.entrance.length - 1), true))];
+    } else {
+      return this.options.entrance;
+    }
   },
 
   add_events_to_bug: function (thebug) {
@@ -239,15 +247,18 @@ var BugDispatch = {
       return;
     }
 
-    var mode = this.options.mouseOver;
-    if (mode === 'random') {
-      mode = this.modes[(this.random(0, (this.modes.length - 1), true))];
+    //pick mouseover mode
+    if (this.options.mouseOver instanceof Array) {
+      this.mouseoverMode = this.options.mouseOver[(this.random(0, (this.options.mouseOver.length - 1), true))];
+    } else {
+      this.mouseoverMode = this.options.mouseOver;
     }
-    if (mode === 'fly') {
+
+    if (this.mouseoverMode === 'fly') {
       // fly away!
       bug.stop();
       bug.flyRand();
-    } else if (mode === 'flyoff') {
+    } else if (this.mouseoverMode === 'flyoff') {
     	// fly away and off the page
       that = this;
       bug.stop();
@@ -255,10 +266,10 @@ var BugDispatch = {
       if (this.options.respawn) {
         setTimeout(function() {
           var b = that.makeNewBug();
-          b.makeEntrance(that.options.entrance);
+          b.makeEntrance(that.pick_entrance_mode());
         }, that.options.minRespawnDelay)
       }
-    } else if (mode === 'fall') {
+    } else if (this.mouseoverMode === 'fall') {
     	// drop dead!
       that = this;
       bug.fall();
@@ -266,10 +277,10 @@ var BugDispatch = {
       if (this.options.respawn) {
         setTimeout(function() {
           var b = that.makeNewBug();
-          b.makeEntrance(that.options.entrance);
+          b.makeEntrance(that.pick_entrance_mode());
         }, that.options.minRespawnDelay)
       }
-    } else if (mode === 'squish') {
+    } else if (this.mouseoverMode === 'squish') {
       // splut!
       that = this;
       bug.squish();
@@ -277,10 +288,21 @@ var BugDispatch = {
       if (this.options.respawn) {
         setTimeout(function() {
           var b = that.makeNewBug();
-          b.makeEntrance(that.options.entrance);
+          b.makeEntrance(that.pick_entrance_mode());
         }, that.options.minRespawnDelay)
       }
-    } else if (mode === 'multiply') {
+    } else if (this.mouseoverMode === 'pop out') {
+      // splut!
+      that = this;
+      bug.destroyBug();
+
+      if (this.options.respawn) {
+        setTimeout(function() {
+          var b = that.makeNewBug();
+          b.makeEntrance(that.pick_entrance_mode());
+        }, that.options.minRespawnDelay)
+      }
+    } else if (this.mouseoverMode === 'multiply') {
       if (!this.multiplyDelay && this.bugs.length < this.options.maxBugs) {
         var that = this;
         // spawn another: 
@@ -555,7 +577,7 @@ var Bug = {
       diffx = (currentLeft - landingPosition.left),
       diffy = (currentTop - landingPosition.top)
 
-    this.set_angle_angle_to_landing_site(landingPosition);
+    this.set_angle_for_landing(landingPosition);
 
 
     if (Math.abs(diffx) + Math.abs(diffy) > 200) {
@@ -615,7 +637,7 @@ var Bug = {
     this.bug.left = landingPosition.left;
     this.bug.top = landingPosition.top;
 
-    this.set_angle_angle_to_landing_site(landingPosition);
+    this.set_angle_for_landing(landingPosition);
 
     this.transform("rotate(" + (this.angle_deg + 90) + "deg)");
 
@@ -627,7 +649,7 @@ var Bug = {
     }, 10); //this.fly.periodical(10, this, [landingPosition]);
   },
 
-  makeEntrance: function (mode) {
+  makeEntrance: function (enterMode) {
     if (!this.bug) {
       this.makeBug();
     }
@@ -642,7 +664,7 @@ var Bug = {
     if (side > 3) side = 3;
     if (side < 0) side = 0;
 
-    if (mode === 'pop in') {
+    if (enterMode === 'pop in') {
       this.bug.style.backgroundPosition = (-3 * this.options.flyWidth) + 'px -' + (this.options.flyHeight) + 'px';
       this.setPos();
       this.go();
@@ -672,11 +694,11 @@ var Bug = {
       this.bug.top = style.top
       this.bug.left = style.left
     
-      if (mode == 'walk in') {
+      if (enterMode == 'walk in') {
 
         this.go();
 
-      } else if (mode === 'fly in') {
+      } else if (enterMode === 'fly in') {
         // landing position:
         var landingPosition = {};
         landingPosition.top = this.random(this.options.edge_resistance, document.documentElement.clientHeight - this.options.edge_resistance);
@@ -776,7 +798,7 @@ var Bug = {
       clearTimeout(this.dropTimer);
       this.angle_deg = 0;
       this.angle_rad = this.deg2rad(this.angle_deg);
-      this.transform("rotate(" + (90 - this.angle_deg) + "deg)");
+      this.transform("rotate(" + (this.angle_deg) + "deg)");
       this.bug.style.top = null;
       this.bug.style.bottom = '-1px';
 
@@ -842,7 +864,7 @@ var Bug = {
   deg2rad: function (deg) {
     return deg * this.deg2rad_k;
   },
-  set_angle_angle_to_landing_site: function(landingSite) {
+  set_angle_for_landing: function(landingSite) {
     var currentTop = parseInt(this.bug.style.top, 10),
       currentLeft = parseInt(this.bug.style.left, 10),
       diffx = (landingSite.left - currentLeft),

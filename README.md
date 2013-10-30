@@ -60,15 +60,22 @@ See example.html
 jFormics constructor can optionally take an object of options. To make this js more async friendly, you can adjust the default options at the top of jformics.js, and then instantiate at the bottom of the file as above. This will allow one to wrap the entire script in a closure to prevent any global window name space overlaps.
 
 
-Modes
------
+Mouse Interaction Modes
+-----------------------
 
-* random: Randomly pick one of the other modes on each mouse over/near event
 * fly: The bug will fly away to another random point on the page
 * flyoff: The bug will fly off the screen and be destroyed
 * fall: The bug will be struck dead, and fall to the bottom of the page
 * squish: The bug will be squished on the spot
 * multiply: The bug will spawn a new bug and both will fly away to other parts of the page
+* pop out: The Bug will cease to exist on the spot.
+* A random selection from an array of selected possibilities, like: ['fall', 'squish']
+
+Entrance Modes
+-----------------------
+* fly in: The bug will fly in from off screen and land.
+* walk in: The Bug will walk in from off screen, may take a few extra seconds if it dallies off screen.
+* pop in: The Bug will pop in to being in place at a random location.
 
 
 Options
@@ -78,7 +85,7 @@ Options
 * maxDelay - Maximum delay before last bug will be created on startup. (default: 10000)
 * minBugs - Minimum starting bug count. (default: 1)
 * maxBugs - Maximum bug count. (default: 20)
-* entrance - Defines how new bugs will appear, can be 'fly in', 'walk in', or 'pop in'. (default: 'fly_in')
+* entrance - Defines how new bugs will appear, can be 'fly in', 'walk in', or 'pop in', or a random selection from an array of selected possibilities on each bug entrance. See Entrance Modes. (default: ['walk in', 'fly in'])
 * minSpeed - Minimum walking speed of a bug, in no particular units. (default: 1)
 * maxSpeed - Maximum walking speed of a bug, in no particular units. (default: 3)
 * maxFlySpeed: 5 - Max bug flight speed, in no particular units. (default 5)
@@ -86,7 +93,7 @@ Options
 * flyWidth - The width of the fly sprite cell, and also div width. (default: 13)
 * flyHeight - The height of the fly sprite cell, and also div height. (default: 14)
 * walkFrames - Number of frames in walk animation. (default 5)
-* mouseOver - What to do when the mouse is over (or near) a fly. Can be 'fly', 'flyoff', 'fall', 'squish', multiply', or 'random'. See Modes. (default: random)
+* mouseOver - What to do when the mouse is over (or near) a fly. Can be 'fly', 'flyoff', 'fall', 'squish', 'multiply', 'pop out' or a random selection from an array of selected possibilities on each event. See Mouse Interaction Modes. (default: ['fly', 'flyoff', 'fall', 'squish', 'multiply'])
 * minTimeBetweenMultipy - When in 'multiply' mode, this is the minimum time in ms between a multiply event. (default: 1000)
 * deathTypes - Number of death variation rows in sprite (If using removeDead, a row of removal frames is expected for each death variation). (default: 2)
 * twitchFrames - Number of frames in twitch animation (death variation) rows. (default: 5)
