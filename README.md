@@ -22,7 +22,7 @@ Features
 Demo
 ----
 
-For now, see the source project page: http://auz.github.io/Bug/ or http://jsfiddle.net/snfmn/
+See it in action: http://mishaux.github.io/jFormics/
 
 
 Dependencies
@@ -40,16 +40,16 @@ Works on all browsers that support CSS3 transforms, even mobile (that I've teste
 How to use 
 ----------
 
-Include the JS somewhere, and then initialize with 
+Include the JS somewhere, and then initialize with:
 ```js
   new jFormics();
 ```
-or
+or:
 ```js
   new jFormics({'minBugs':10, 'maxBugs':50, 'mouseOver':'die'});
 ```
 
-Use multiple instances with different options for multiple variants of bugs.
+Use multiple instances with different options for multiple variants of bugs:
 
 ```js
   new jFormics({imageSprite:'fly-sprite-folded-wings.png'});
@@ -72,28 +72,21 @@ Options
 * minSpeed - Minimum walking speed of a bug, in no particular units. (default: 1)
 * maxSpeed - Maximum walking speed of a bug, in no particular units. (default: 3)
 * maxFlySpeed: 5 - Max bug flight speed, in no particular units. (default 5)
-
 * imageSprite - Location of the sprite sheet for this bug set. (default: 'fly-sprite.png')
 * flyWidth - The width of the fly sprite cell, and also div width. (default: 13)
 * flyHeight - The height of the fly sprite cell, and also div height. (default: 14)
 * walkFrames - Number of frames in walk animation. (default 5)
-
 * mouseOver - What to do when the mouse is over (or near) a fly. Can be 'fly', 'flyoff', 'fall', 'squish', multiply', or 'random'. See Modes. (default: random)
 * minTimeBetweenMultipy - When in 'multiply' mode, this is the minimum time in ms between a multiply event. (default: 1000)
-
 * deathTypes - Number of death variation rows in sprite (If using removeDead, a row of removal frames is expected for each death variation). (default: 2)
-
 * twitchFrames - Number of frames in twitch animation (death variation) rows. (default: 5)
 * twitchMode - Twitch behavior mode. Can be 'random' (random frames at random times), 'sequential' (frames loop at speed set by twitchRate), 'random-sequential' (frame cycle starts randomly). (default: 'random-sequential')
 * twitchRate - Frequency of twitching, Can be 0 - 1000 (never - constantly). (default: 400)
-
 * respawn - Replace bugs which have died or flown away? (default: true)
 * minRespawnDelay - Min time to wait before replacing departed bugs. (default: 4000)
-
 * removeDead - Runs dead bug removal frames then destroys bug after delay. (default: true)
 * removeDeadFrames - Number of frames in the removal animation rows. For fading or disintegration or whatever. (default: 5)
 * removeDeadDelay - Delay after bug dies before removal frames are cycled and bug is destroyed. (default: 3000)
-
 * monitorMouseMovement - If enabled, a mousemove event will be added to the window, and used to detect if the cursor is near a fly. Currently Buggy. (default: false)
 * eventDistanceToBug - If monitorMouseMovemenet is enabled, this is the distance from the bug in pixels which will trigger the near bug event. (default: 40)
 
