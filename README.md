@@ -48,11 +48,17 @@ or
 ```js
   new jFormics({'minBugs':10, 'maxBugs':50, 'mouseOver':'die'});
 ```
+
+Use multiple instances with different options for multiple variants of bugs.
+
+```js
+  new jFormics({imageSprite:'fly-sprite-folded-wings.png'});
+  new jFormics({imageSprite:'fly-sprite-spread-wings.png'});
+```
+
 See example.html 
 
 jFormics constructor can optionally take an object of options. To make this js more async friendly, you can adjust the default options at the top of jformics.js, and then instantiate at the bottom of the file as above. This will allow one to wrap the entire script in a closure to prevent any global window name space overlaps.
-
-Use multiple instances with different options for multiple variants of bugs.
 
 
 Options
