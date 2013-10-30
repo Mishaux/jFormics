@@ -18,7 +18,7 @@
 * license: MIT license.
 * copyright: Copyright (c) 2013 Mike Michaud (mishuax (no at for bots ಠ_ಠ) gmail)
 * 
-* I needed some behaviorally rich interactive bugs for a little prank and built on
+* I needed some behaviorally rich interactive bugs for a little game and built on
 * work of the credited projects. Enjoy!
 *
 * MIT says I should say:
@@ -64,7 +64,7 @@ var BugDispatch = {
     maxBugs: 20, // Max starting bug count. Also limits multiply mode.
     minSpeed: 1, // Min bug walking speed
     maxSpeed: 3, // Max bug walking speed
-    maxFlySpeed: 5, // Max bug flight speed
+    maxFlySpeed: 3, // Max bug flight speed
     imageSprite: 'template.png', //Sprite to use for this bug set
     flyWidth: 128, // Width in pixels of each bug frame on sprite
     flyHeight: 128, // Height in pixels of each bug frame on sprite
@@ -339,10 +339,10 @@ var BugDispatch = {
   }
 };
 
-var BugController = function () {
+var jFormics = function () {
   this.initialize.apply(this, arguments);
 }
-BugController.prototype = BugDispatch;
+jFormics.prototype = BugDispatch;
 
 
 /***************/
@@ -701,20 +701,20 @@ var Bug = {
 
     if (side === 0) {
       // top:
-      style.top = -1000;
+      style.top = -5 * this.options.flyHeight;
       style.left = Math.random() * windowX;
     } else if (side === 1) {
       // right:
       style.top = Math.random() * windowY;
-      style.left = windowX + 1000;
+      style.left = windowX + (5 * this.options.flyWidth);
     } else if (side === 2) {
       //bottom
-      style.top = windowY + 1000;
+      style.top = windowY + (5 * this.options.flyHeight);
       style.left = Math.random() * windowX;
     } else {
       // left: 
       style.top = Math.random() * windowY;
-      style.left = -1000;
+      style.left = -5 * this.options.flyWidth;
     }
     this.startFlying(style, function(){bug.destroyBug()});
   },

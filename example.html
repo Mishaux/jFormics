@@ -2,10 +2,11 @@
 <html>
 	<head>
 	</head>
-	<body style='background-color:#000000'>
-		<script type='text/javascript' src='jformics-min.js'></script>
+	<body style='background-color:#fff'>
+		<script type='text/javascript' src='jformics.js'></script>
 		<script type='text/javascript'>
-			new BugController({imageSprite:'template.png'});
+			new jFormics({imageSprite:'fly-sprite-folded-wings.png', deathTypes: 3, flyWidth: 13, flyHeight: 14, twitchFrames: 2});
+      new jFormics({imageSprite:'fly-sprite-spread-wings.png', deathTypes: 3, flyWidth: 13, flyHeight: 14, twitchFrames: 2});
 		</script>
 	</body>
 </html>

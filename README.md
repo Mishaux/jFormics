@@ -1,7 +1,7 @@
 jFormics
 ===========
 
-Flexible, customazable, interactive, behaviorally rich, pure Javascript Bugs
+Flexible, customizable, interactive, behaviorally rich, pure javascript Bugs!
 
 I'd love to have more bug sprite images available, but making them is not my strong suit. Please feel free to contribute and I'll set up a little downloadable gallery if we get some good ones.
 
@@ -17,6 +17,7 @@ Features
 
 * Creates multiple bug sprites which fly and walk around the page.
 * Bugs are responsive to mouse movements (optional) and mouse over events.
+* Can be used with any combination of bug sprites with any combination of options.
 
 Demo
 ----
@@ -24,7 +25,7 @@ Demo
 For now, see the source project page: http://auz.github.io/Bug/ or http://jsfiddle.net/snfmn/
 
 
-Dependancies
+Dependencies
 ------------
 
 None, all native js code
@@ -41,15 +42,17 @@ How to use
 
 Include the JS somewhere, and then initialize with 
 ```js
-  new BugController();
+  new jFormics();
 ```
 or
 ```js
-  new BugController({'minBugs':10, 'maxBugs':50, 'mouseOver':'die'});
+  new jFormics({'minBugs':10, 'maxBugs':50, 'mouseOver':'die'});
 ```
 See example.html 
 
-BugController constructor can optionally take an object of options. To make this js more async friendly, you can adjust the default options at the top of bug.js, and then instantiate at the bottom of the file as above. This will allow one to wrap the entire script in a closure to prevent any global window name space overlaps.
+jFormics constructor can optionally take an object of options. To make this js more async friendly, you can adjust the default options at the top of jformics.js, and then instantiate at the bottom of the file as above. This will allow one to wrap the entire script in a closure to prevent any global window name space overlaps.
+
+Use multiple instances with different options for multiple variants of bugs.
 
 
 Options
@@ -57,7 +60,7 @@ Options
 
 * minDelay - Minimum delay before first bug will be created on startup. (default: 500)
 * maxDelay - Maximum delay before last bug will be created on startup. (default: 10000)
-* minBugs - Minumum starting bug count. (default: 1)
+* minBugs - Minimum starting bug count. (default: 1)
 * maxBugs - Maximum bug count. (default: 20)
 * entrance - Defines how new bugs will appear, can be 'fly in', 'walk in', or 'pop in'. (default: 'fly_in')
 * minSpeed - Minimum walking speed of a bug, in no particular units. (default: 1)
@@ -72,9 +75,9 @@ Options
 * mouseOver - What to do when the mouse is over (or near) a fly. Can be 'fly', 'flyoff', 'fall', 'squish', multiply', or 'random'. See Modes. (default: random)
 * minTimeBetweenMultipy - When in 'multiply' mode, this is the minimum time in ms between a multiply event. (default: 1000)
 
-* deathTypes - Number of death variation rows in sprite (If using twitch, a row of twitch frames is expected for each death variation). (default: 2)
+* deathTypes - Number of death variation rows in sprite (If using removeDead, a row of removal frames is expected for each death variation). (default: 2)
 
-* twitchFrames - Number of frames in twitch animation rows. (default: 5)
+* twitchFrames - Number of frames in twitch animation (death variation) rows. (default: 5)
 * twitchMode - Twitch behavior mode. Can be 'random' (random frames at random times), 'sequential' (frames loop at speed set by twitchRate), 'random-sequential' (frame cycle starts randomly). (default: 'random-sequential')
 * twitchRate - Frequency of twitching, Can be 0 - 1000 (never - constantly). (default: 400)
 
@@ -82,7 +85,7 @@ Options
 * minRespawnDelay - Min time to wait before replacing departed bugs. (default: 4000)
 
 * removeDead - Runs dead bug removal frames then destroys bug after delay. (default: true)
-* removeDeadFrames - Number of frames in the removal animation rows. For fading or disintigration or whatever. (default: 5)
+* removeDeadFrames - Number of frames in the removal animation rows. For fading or disintegration or whatever. (default: 5)
 * removeDeadDelay - Delay after bug dies before removal frames are cycled and bug is destroyed. (default: 3000)
 
 * monitorMouseMovement - If enabled, a mousemove event will be added to the window, and used to detect if the cursor is near a fly. Currently Buggy. (default: false)
