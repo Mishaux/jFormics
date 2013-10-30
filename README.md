@@ -61,6 +61,17 @@ See example.html
 jFormics constructor can optionally take an object of options. To make this js more async friendly, you can adjust the default options at the top of jformics.js, and then instantiate at the bottom of the file as above. This will allow one to wrap the entire script in a closure to prevent any global window name space overlaps.
 
 
+Modes
+-----
+
+* random: Randomly pick one of the other modes on each mouse over/near event
+* fly: The bug will fly away to another random point on the page
+* flyoff: The bug will fly off the screen and be destroyed
+* fall: The bug will be struck dead, and fall to the bottom of the page
+* squish: The bug will be squished on the spot
+* multiply: The bug will spawn a new bug and both will fly away to other parts of the page
+
+
 Options
 -------
 
@@ -90,17 +101,6 @@ Options
 * monitorMouseMovement - If enabled, a mousemove event will be added to the window, and used to detect if the cursor is near a fly. Currently Buggy. (default: false)
 * eventDistanceToBug - If monitorMouseMovemenet is enabled, this is the distance from the bug in pixels which will trigger the near bug event. (default: 40)
 
-
-
-Modes
------
-
-* random: Randomly pick one of the other modes on each mouse over/near event
-* fly: The bug will fly away to another random point on the page
-* flyoff: The bug will fly off the screen and be destroyed
-* fall: The bug will be struck dead, and fall to the bottom of the page
-* squish: The bug will be squished on the spot
-* multiply: The bug will spawn a new bug and both will fly away to other parts of the page
 
 Credits
 -------
