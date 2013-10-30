@@ -76,6 +76,7 @@ Entrance Modes
 * fly in: The bug will fly in from a random location off screen and land at a random location.
 * walk in: The Bug will walk in from a random location off screen, may take a few extra seconds to show up if it dallies on the way on to the screen.
 * pop in: The Bug will pop in to being at a random location on screen.
+* A random selection from an array of selected possibilities, like: ['fly in', 'walk in']
 
 
 Options
