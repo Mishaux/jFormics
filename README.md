@@ -3,8 +3,6 @@ jFormics
 
 Flexible, customizable, interactive, behaviorally rich, pure javascript Bugs!
 
-I'd love to have more bug sprite images available, but making them is not my strong suit. Please feel free to contribute and I'll set up a little downloadable gallery if we get some good ones.
-
 An elaboration on the themes of, and indebted to, these excellent works:
 
 Original Screen Bug http://screen-bug.googlecode.com/git/index.html
@@ -24,6 +22,7 @@ Demo
 
 See it in action: http://mishaux.github.io/jFormics/
 
+I'd love to have more bug sprite images available, but making them is not my strong suit. Please feel free to contribute and I'll set up a little downloadable gallery if we get some good ones.
 
 Dependencies
 ------------
