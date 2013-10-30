@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="jFormics : Flexible, customazable, interactive, behaviorally rich, pure javascript bugs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>jFormics</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Mishaux/jFormics">View on GitHub</a>
+
+          <h1 id="project_title">jFormics</h1>
+          <h2 id="project_tagline">Flexible, customazable, interactive, behaviorally rich, pure javascript bugs</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Mishaux/jFormics/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Mishaux/jFormics/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="jformics" class="anchor" href="#jformics"><span class="octicon octicon-link"></span></a>jFormics</h1>
+
+<p>Flexible, customizable, interactive, behaviorally rich, pure javascript Bugs!</p>
+
+<p>I'd love to have more bug sprite images available, but making them is not my strong suit. Please feel free to contribute and I'll set up a little downloadable gallery if we get some good ones.</p>
+
+<p>An elaboration on the themes of, and indebted to, these excellent works:</p>
+
+<p>Original Screen Bug <a href="http://screen-bug.googlecode.com/git/index.html">http://screen-bug.googlecode.com/git/index.html</a></p>
+
+<p>Upgraded Screen Bug <a href="https://github.com/Auz/Bug">https://github.com/Auz/Bug</a></p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Creates multiple bug sprites which fly and walk around the page.</li>
+<li>Bugs are responsive to mouse movements (optional) and mouse over events.</li>
+<li>Can be used with any combination of bug sprites with any combination of options.</li>
+</ul><h2>
+<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>For now, see the source project page: <a href="http://auz.github.io/Bug/">http://auz.github.io/Bug/</a> or <a href="http://jsfiddle.net/snfmn/">http://jsfiddle.net/snfmn/</a></p>
+
+<h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>None, all native js code</p>
+
+<h2>
+<a name="compatibility" class="anchor" href="#compatibility"><span class="octicon octicon-link"></span></a>Compatibility</h2>
+
+<p>Works on all browsers that support CSS3 transforms, even mobile (that I've tested). See <a href="http://caniuse.com/transforms2d">http://caniuse.com/transforms2d</a></p>
+
+<h2>
+<a name="how-to-use-" class="anchor" href="#how-to-use-"><span class="octicon octicon-link"></span></a>How to use </h2>
+
+<p>Include the JS somewhere, and then initialize with </p>
+
+<div class="highlight highlight-js"><pre>  <span class="k">new</span> <span class="nx">jFormics</span><span class="p">();</span>
+</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-js"><pre>  <span class="k">new</span> <span class="nx">jFormics</span><span class="p">({</span><span class="s1">'minBugs'</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span> <span class="s1">'maxBugs'</span><span class="o">:</span><span class="mi">50</span><span class="p">,</span> <span class="s1">'mouseOver'</span><span class="o">:</span><span class="s1">'die'</span><span class="p">});</span>
+</pre></div>
+
+<p>Use multiple instances with different options for multiple variants of bugs.</p>
+
+<div class="highlight highlight-js"><pre>  <span class="k">new</span> <span class="nx">jFormics</span><span class="p">({</span><span class="nx">imageSprite</span><span class="o">:</span><span class="s1">'fly-sprite-folded-wings.png'</span><span class="p">});</span>
+  <span class="k">new</span> <span class="nx">jFormics</span><span class="p">({</span><span class="nx">imageSprite</span><span class="o">:</span><span class="s1">'fly-sprite-spread-wings.png'</span><span class="p">});</span>
+</pre></div>
+
+<p>See example.html </p>
+
+<p>jFormics constructor can optionally take an object of options. To make this js more async friendly, you can adjust the default options at the top of jformics.js, and then instantiate at the bottom of the file as above. This will allow one to wrap the entire script in a closure to prevent any global window name space overlaps.</p>
+
+<h2>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<ul>
+<li>minDelay - Minimum delay before first bug will be created on startup. (default: 500)</li>
+<li>maxDelay - Maximum delay before last bug will be created on startup. (default: 10000)</li>
+<li>minBugs - Minimum starting bug count. (default: 1)</li>
+<li>maxBugs - Maximum bug count. (default: 20)</li>
+<li>entrance - Defines how new bugs will appear, can be 'fly in', 'walk in', or 'pop in'. (default: 'fly_in')</li>
+<li>minSpeed - Minimum walking speed of a bug, in no particular units. (default: 1)</li>
+<li>maxSpeed - Maximum walking speed of a bug, in no particular units. (default: 3)</li>
+<li>maxFlySpeed: 5 - Max bug flight speed, in no particular units. (default 5)</li>
+<li>imageSprite - Location of the sprite sheet for this bug set. (default: 'fly-sprite.png')</li>
+<li>flyWidth - The width of the fly sprite cell, and also div width. (default: 13)</li>
+<li>flyHeight - The height of the fly sprite cell, and also div height. (default: 14)</li>
+<li>walkFrames - Number of frames in walk animation. (default 5)</li>
+<li>mouseOver - What to do when the mouse is over (or near) a fly. Can be 'fly', 'flyoff', 'fall', 'squish', multiply', or 'random'. See Modes. (default: random)</li>
+<li>minTimeBetweenMultipy - When in 'multiply' mode, this is the minimum time in ms between a multiply event. (default: 1000)</li>
+<li>deathTypes - Number of death variation rows in sprite (If using removeDead, a row of removal frames is expected for each death variation). (default: 2)</li>
+<li>twitchFrames - Number of frames in twitch animation (death variation) rows. (default: 5)</li>
+<li>twitchMode - Twitch behavior mode. Can be 'random' (random frames at random times), 'sequential' (frames loop at speed set by twitchRate), 'random-sequential' (frame cycle starts randomly). (default: 'random-sequential')</li>
+<li>twitchRate - Frequency of twitching, Can be 0 - 1000 (never - constantly). (default: 400)</li>
+<li>respawn - Replace bugs which have died or flown away? (default: true)</li>
+<li>minRespawnDelay - Min time to wait before replacing departed bugs. (default: 4000)</li>
+<li>removeDead - Runs dead bug removal frames then destroys bug after delay. (default: true)</li>
+<li>removeDeadFrames - Number of frames in the removal animation rows. For fading or disintegration or whatever. (default: 5)</li>
+<li>removeDeadDelay - Delay after bug dies before removal frames are cycled and bug is destroyed. (default: 3000)</li>
+<li>monitorMouseMovement - If enabled, a mousemove event will be added to the window, and used to detect if the cursor is near a fly. Currently Buggy. (default: false)</li>
+<li>eventDistanceToBug - If monitorMouseMovemenet is enabled, this is the distance from the bug in pixels which will trigger the near bug event. (default: 40)</li>
+</ul><h2>
+<a name="modes" class="anchor" href="#modes"><span class="octicon octicon-link"></span></a>Modes</h2>
+
+<ul>
+<li>random: Randomly pick one of the other modes on each mouse over/near event</li>
+<li>fly: The bug will fly away to another random point on the page</li>
+<li>flyoff: The bug will fly off the screen and be destroyed</li>
+<li>fall: The bug will be struck dead, and fall to the bottom of the page</li>
+<li>squish: The bug will be squished on the spot</li>
+<li>multiply: The bug will spawn a new bug and both will fly away to other parts of the page</li>
+</ul><h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>Upgraded Screen Bug <a href="https://github.com/Auz/Bug">https://github.com/Auz/Bug</a></p>
+
+<p>Original Screen Bug <a href="http://screen-bug.googlecode.com/git/index.html">http://screen-bug.googlecode.com/git/index.html</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">jFormics maintained by <a href="https://github.com/Mishaux">Mishaux</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
