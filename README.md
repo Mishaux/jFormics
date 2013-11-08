@@ -3,11 +3,7 @@ jFormics
 
 Flexible, customizable, interactive, behaviorally rich, pure javascript Bugs!
 
-An elaboration on the themes of, and indebted to, these excellent works:
-
-Original Screen Bug http://screen-bug.googlecode.com/git/index.html
-
-Upgraded Screen Bug https://github.com/Auz/Bug
+Bugs infest the screen and interact with the pointer. Bugs have tons of options to customize behavior and very flexible sprite system for customizing their look.
 
 
 Features
@@ -89,10 +85,11 @@ Options
 * entrance - Defines how new bugs will appear, can be 'fly in', 'walk in', or 'pop in', or a random selection from an array of selected possibilities on each bug entrance. See Entrance Modes. (default: ['walk in', 'fly in'])
 * minSpeed - Minimum walking speed of a bug, in no particular units. (default: 1)
 * maxSpeed - Maximum walking speed of a bug, in no particular units. (default: 3)
-* maxFlySpeed: 5 - Max bug flight speed, in no particular units. (default 5)
-* imageSprite - Location of the sprite sheet for this bug set. (default: 'fly-sprite.png')
-* flyWidth - The width of the fly sprite cell, and also div width. (default: 13)
-* flyHeight - The height of the fly sprite cell, and also div height. (default: 14)
+* maxFlySpeed: Max bug flight (or run) speed, in no particular units. (default 5)
+* decelToLand: Strength of decelerate to land effect, 0 = No Deceleration (default 3)
+* imageSprite - Location of the sprite sheet for this bug set. (default: 'template.png')
+* cellWidth - The width of the sprite cells, and also div width. (default: 13)
+* cellHeight - The height of the sprite cells, and also div height. (default: 14)
 * walkFrames - Number of frames in walk animation. (default 5)
 * mouseOver - What to do when the mouse is over (or near) a fly. Can be 'fly', 'flyoff', 'fall', 'squish', 'multiply', 'pop out' or a random selection from an array of selected possibilities on each event. See Mouse Interaction Modes. (default: ['fly', 'flyoff', 'fall', 'squish', 'multiply'])
 * minTimeBetweenMultipy - When in 'multiply' mode, this is the minimum time in ms between a multiply event. (default: 1000)
