@@ -7,8 +7,8 @@
     <meta name="description" content="jFormics : Flexible, customazable, interactive, behaviorally rich, pure javascript bugs" />
     <script type='text/javascript' src='javascripts/jformics-min.js'></script>
     <script type='text/javascript'>
-      new jFormics({imageSprite:'fly-sprite-folded-wings.png', deathTypes: 3, flyWidth: 13, flyHeight: 14, twitchFrames: 2});
-      new jFormics({imageSprite:'fly-sprite-spread-wings.png', deathTypes: 3, flyWidth: 13, flyHeight: 14, twitchFrames: 2});
+      new jFormics({imageSprite:'fly-sprite-folded-wings.png', deathTypes: 3, minSpeed: 1, maxSpeed: 4, cellWidth: 13, cellHeight: 14, twitchFrames: 2, removeDeadDelay: 3000, minBugs: 3, maxBugs: 10}
+      new jFormics({imageSprite:'fly-sprite-spread-wings.png', deathTypes: 3, minSpeed: 1, maxSpeed: 4, cellWidth: 13, cellHeight: 14, twitchFrames: 2, removeDeadDelay: 3000, minBugs: 3, maxBugs: 10}
     </script>
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -36,11 +36,7 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
 
-<p>An elaboration on the themes of, and indebted to, these excellent works:</p>
-
-<p>Original Screen Bug <a href="http://screen-bug.googlecode.com/git/index.html">http://screen-bug.googlecode.com/git/index.html</a></p>
-
-<p>Upgraded Screen Bug <a href="https://github.com/Auz/Bug">https://github.com/Auz/Bug</a></p>
+<p>Bugs infest the screen and interact with the pointer. Bugs have tons of options to customize behavior and very flexible sprite system for customizing their look.</p>
 
 <h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
@@ -97,8 +93,9 @@
 <li>entrance - Defines how new bugs will appear, can be 'fly in', 'walk in', or 'pop in'. (default: 'fly_in')</li>
 <li>minSpeed - Minimum walking speed of a bug, in no particular units. (default: 1)</li>
 <li>maxSpeed - Maximum walking speed of a bug, in no particular units. (default: 3)</li>
-<li>maxFlySpeed: 5 - Max bug flight speed, in no particular units. (default 5)</li>
-<li>imageSprite - Location of the sprite sheet for this bug set. (default: 'fly-sprite.png')</li>
+<li>maxFlySpeed - Max bug flight speed, in no particular units. (default 5)</li>
+<li>decelToLand - Strength of decelerate to land effect, 0 = No Deceleration (default 3)</li>
+<li>imageSprite - Location of the sprite sheet for this bug set. (default: 'template.png')</li>
 <li>flyWidth - The width of the fly sprite cell, and also div width. (default: 13)</li>
 <li>flyHeight - The height of the fly sprite cell, and also div height. (default: 14)</li>
 <li>walkFrames - Number of frames in walk animation. (default 5)</li>
