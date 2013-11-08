@@ -304,26 +304,33 @@ var BugDispatch = {
         }, that.options.minRespawnDelay)
       }
     } else if (this.mouseoverMode === 'multiply') {
-      if (!this.multiplyDelay && this.bugs.length < this.options.maxBugs) {
-        var that = this;
-        // spawn another: 
-        // create new bug:
-        var b = this.makeNewBug();
-        var pos = bug.getPos();
+      if (this.bugs.length < this.options.maxBugs) {
+        
+        if (this.multiplyDelay) {
+          // fly away!
+          bug.stop();
+          bug.flyRand();
+        } else {
+          var that = this;
+          // spawn another: 
+          // create new bug:
+          var b = this.makeNewBug();
+          var pos = bug.getPos();
 
-        b.drawBug(pos.top, pos.left);
-        // fly them both away:
-        b.flyRand();
-        bug.flyRand();
-        // store new bug:
-        this.bugs.push(b);
-        // watch out for spawning too quickly:
-        this.multiplyDelay = true;
-        setTimeout(function () {
-          // add event to this bug:
-          that.add_events_to_bug(b);
-          that.multiplyDelay = false;
-        }, this.options.minTimeBetweenMultipy);
+          b.drawBug(pos.top, pos.left);
+          // fly them both away:
+          b.flyRand();
+          bug.flyRand();
+          // store new bug:
+          this.bugs.push(b);
+          // watch out for spawning too quickly:
+          this.multiplyDelay = true;
+          setTimeout(function () {
+            // add event to this bug:
+            that.add_events_to_bug(b);
+            that.multiplyDelay = false;
+          }, this.options.minTimeBetweenMultipy);
+        }
       }
     }
   },

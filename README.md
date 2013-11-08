@@ -92,7 +92,7 @@ Options
 * cellHeight - The height of the sprite cells, and also div height. (default: 14)
 * walkFrames - Number of frames in walk animation. (default 5)
 * mouseOver - What to do when the mouse is over (or near) a fly. Can be 'fly', 'flyoff', 'fall', 'squish', 'multiply', 'pop out' or a random selection from an array of selected possibilities on each event. See Mouse Interaction Modes. (default: ['fly', 'flyoff', 'fall', 'squish', 'multiply'])
-* minTimeBetweenMultipy - When in 'multiply' mode, this is the minimum time in ms between a multiply event. (default: 1000)
+* minTimeBetweenMultipy - When in 'multiply' mode this is the minimum time in ms between multiply events, bug will just fly without multiplying if within interval (default: 1000)
 * deathTypes - Number of death variation rows in sprite (If using removeDead, a row of removal frames is expected for each death variation). (default: 2)
 * twitchFrames - Number of frames in twitch animation (death variation) rows. (default: 5)
 * twitchMode - Twitch behavior mode. Can be 'random' (random frames at random times), 'sequential' (frames loop at speed set by twitchRate), 'random-sequential' (frame cycle starts randomly). (default: 'random-sequential')
